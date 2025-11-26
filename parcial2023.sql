@@ -23,3 +23,4 @@ WHERE NOT EXISTS(
 			AND d.MedID = m.MedID
 		)
 )
+
