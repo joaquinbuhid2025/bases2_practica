@@ -50,14 +50,14 @@ EXEC buscar_dispensas @fecha_desde='01/08/2020', @fecha_hasta='10/08/2024'
 
 SELECT c.ClinicaDesc FROM CLINICAS c
 WHERE NOT EXISTS(
-	SELECT 1 FROM PROVINCIAS pr
+	SELECT 1 FROM PROVINCIAS p1
 	WHERE NOT EXISTS(
 		SELECT 1 FROM DISPENSAS d
-		INNER JOIN PACIENTES pa ON pa.PacienteID=d.PacienteID
-		WHERE pr.ProvinciaID=pa.ProvinciaID
-		AND c.ClinicaID=d.ClinicaID
+		INNER JOIN PACIENTES p ON p.PacienteID=d.PacienteID
+		WHERE d.ClinicaID=c.ClinicaID
+		AND p1.ProvinciaID=p.ProvinciaID
+		)
 	)
-)
 
 -- 5.	Indique la sentencia SQL para obtener para cada Clínica, la cantidad de monodrogas
 -- dispensadas, siempre que la cantidad sea mayor a 1. (2ptos)
